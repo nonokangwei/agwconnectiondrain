@@ -47,12 +47,12 @@ while True:
             while True:
                 try:
                     client.send(frame_to_send)
+                    response = client.recv(4096)
+                    http_response = response.decode('utf-8')
+                    time.sleep(2)             
                 except:
                     print(datetime.datetime.now())
                     raise
-                response = client.recv(4096)
-                http_response = response.decode('utf-8')
-                time.sleep(2)
         else:
             client.send(request.encode())  
             # receive some data 
